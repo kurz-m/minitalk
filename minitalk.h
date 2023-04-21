@@ -1,18 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: makurz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/21 08:45:31 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/21 16:36:33 by makurz           ###   ########.fr       */
+/*   Created: 2023/04/21 16:17:10 by makurz            #+#    #+#             */
+/*   Updated: 2023/04/21 16:34:01 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#ifndef MINITALK_H
+# define MINITALK_H
 
-int	main(int argc, char *argv[])
+# include <unistd.h>
+# include <signal.h>
+# include <stdlib.h>
+
+# define SLEEP 142
+
+typedef struct s_bitshift
 {
-	return (EXIT_SUCCESS);
-}
+	char	c;
+	int		index;
+}	t_bit;
+
+// functions to print out the numbers etc.
+void	ft_putchar_fd(char c, int fd);
+void	ft_putnbr_fd(int n, int fd);
+int		ft_atoi(const char *str);
+
+#endif
