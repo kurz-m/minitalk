@@ -6,7 +6,7 @@
 /*   By: makurz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 08:45:31 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/23 00:54:38 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/23 00:57:57 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	send_package(char *str, pid_t pid)
 	while (bit--)
 	{
 		kill(pid, SIGUSR1);
-		usleep(42);
+		usleep(AWAIT);
 	}
 }
 
