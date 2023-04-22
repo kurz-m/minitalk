@@ -6,7 +6,7 @@
 /*   By: makurz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:17:10 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/23 00:58:07 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/23 01:20:09 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <signal.h>
 # include <stdlib.h>
 
-# define AWAIT 184
+# define AWAIT 160
 
 typedef struct s_package
 {
