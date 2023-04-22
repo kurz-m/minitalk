@@ -17,7 +17,7 @@
 # include <signal.h>
 # include <stdlib.h>
 
-# define AWAIT 100
+# define AWAIT 184
 
 typedef struct s_package
 {
