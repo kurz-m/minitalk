@@ -6,10 +6,84 @@
 #    By: makurz <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/21 08:46:25 by makurz            #+#    #+#              #
-#    Updated: 2023/04/21 08:47:10 by makurz           ###   ########.fr        #
+#    Updated: 2023/04/23 00:29:31 by makurz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Name the executables
-$(SERVERNAME) := server
-$(CLIENTNAME) := client
+# Define the names of the executables
+NAME := minitalk
+SERVERNAME := server
+CLIENTNAME := client
+
+# Set compiler and debugger according to OS
+UNAME := $(shell uname)
+ifeq ($(UNAME), Linux)
+	CC := gcc
+	DB := gdb
+	CFLAGS ?= -Wall -Wextra -Werror -fsanitize=leak
+else ifeq ($(UNAME), Darwin)
+	CC := cc
+	DB := lldb
+	CFLAGS ?= -Wall -Wextra -Werror -g3
+else
+	$(error Unsupported operating system: $(UNAME))
+endif
+
+# Define the remove command
+RM := rm -f
+
+# Color codes
+Y := "\033[33m"
+R := "\033[31m"
+G := "\033[32m"
+X := "\033[0m"
+UP := "\033[A"
+CUT := "\033[K"
+
+# Name all sources
+UTIL := utils.c
+SERVERSRC := server.c
+CLIENTSRC := client.c
+
+# OBJ from the sources
+UTILOBJ := $(UTIL:%.c=%.o)
+SERVEROBJ := $(SERVER:%.c=%.o)
+CLIENTOBJ := $(CLIENT:%.c=%.o)
+
+all: $(NAME)
+	@printf "\n"
+	@echo $(G)"             **          **   **              ** **    "
+	@echo $(G)"            //          //   /**             /**/**    "
+	@echo $(G)" **********  ** *******  ** ******  ******   /**/**  **"
+	@echo $(G)"//**//**//**/**//**///**/**///**/  //////**  /**/** ** "
+	@echo $(G)" /** /** /**/** /**  /**/**  /**    *******  /**/****  "
+	@echo $(G)" /** /** /**/** /**  /**/**  /**   **////**  /**/**/** "
+	@echo $(G)" *** /** /**/** ***  /**/**  //** //******** ***/**//**"
+	@echo $(G)"///  //  // // ///   // //    //   //////// /// //  // "$(X)
+	@printf "\n"
+
+$(NAME): $(SERVERNAME) $(CLIENTNAME)
+
+$(SERVERNAME):
+	@echo $(Y)Creating [$@]...$(X)
+	@$(CC) $(CFLAGS) $(SERVERSRC) $(UTIL) -o $@
+	@echo $(G)Finished [$@]$(X)
+
+$(CLIENTNAME):
+	@echo $(Y)Creating [$@]...$(X)
+	@$(CC) $(CFLAGS) $(CLIENTSRC) $(UTIL) -o $@
+	@echo $(G)Finished [$@]$(X)
+
+clean:
+	@if [ -f ${CLIENTNAME} ] && [ -f ${SERVERNAME} ]; then \
+		echo $(R)Cleaning"  "minitalk...$(X); \
+		$(RM) ${CLIENTNAME} ${SERVERNAME}; \
+		echo $(G)Cleaned!$(X); \
+	fi
+
+fclean: clean
+	@$(RM) $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re

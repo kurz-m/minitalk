@@ -6,7 +6,7 @@
 /*   By: makurz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:17:10 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/22 22:54:42 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/22 23:23:49 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,5 @@ typedef struct s_package
 void	ft_putchar_fd(char c, int fd);
 void	ft_putnbr_fd(int n, int fd);
 int		ft_atoi(const char *str);
-size_t	ft_strlen(const char *str);
 
 #endif

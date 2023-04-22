@@ -6,7 +6,7 @@
 /*   By: makurz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 08:45:31 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/22 23:18:02 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/22 23:35:27 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,18 @@ void	send_package(char *str, pid_t pid)
 
 	while (*str)
 	{
-		bit = 8;
+		bit = -1;
 		package = *str++;
-		while (bit--)
+		while (++bit < 8)
 		{
-			if (package >> bit & 1)
+			////if (package >> bit & 1)
+			if (package & (1 << bit))
 				kill(pid, SIGUSR2);
 			else
 				kill(pid, SIGUSR1);
 			usleep(AWAIT);
 		}
 	}
-	bit = 8;
 	while (bit--)
 	{
 		kill(pid, SIGUSR1);

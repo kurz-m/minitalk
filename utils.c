@@ -6,22 +6,11 @@
 /*   By: makurz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:15:11 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/22 22:55:03 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/22 23:24:00 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-
-// check sent strlen
-size_t	ft_strlen(const char *str)
-{
-	size_t	len;
-
-	len = 0;
-	while (str[len])
-		++len;
-	return (len);
-}
 
 // Outputs the char 'c' to the file descriptor 'fd'.
 void	ft_putchar_fd(char c, int fd)
