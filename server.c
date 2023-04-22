@@ -6,7 +6,7 @@
 /*   By: makurz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 08:45:43 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/22 23:01:53 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/23 00:49:34 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,34 +36,21 @@ static void	listen_for_client(int sig, siginfo_t *info, void *old)
 	}
 	else
 		pack.byte <<= 1;
-	//if (sig == SIGUSR2)
-	//	pack.byte |= (1 << pack.index);
-	//++pack.index;
-	//if (pack.index == 8)
-	//{
-	//	write(1, &pack.byte, 1);
-	//	pack.index = 0;
-	//	pack.byte = 0;
-	//	kill(info->si_pid, SIGUSR1);
-	//}
 }
 
 int	main(void)
 {
-	ssize_t				check;
 	struct sigaction	sig;
 
-	check = write(1, "Server PID: ", 12);
-	if (check == -1)
-		exit(EXIT_FAILURE);
+	write(1, "Server PID: ", 12);
 	ft_putnbr_fd(getpid(), 1);
 	write(1, "\n", 1);
 	sig.sa_sigaction = listen_for_client;
 	sig.sa_flags = SA_SIGINFO;
 	if (sigaction(SIGUSR1, &sig, NULL) == -1)
-		return(write(2, "Error with SIGUSR1 handling.\n", 29), EXIT_FAILURE);
+		return (write(2, "Error with SIGUSR1 handling.\n", 29), EXIT_FAILURE);
 	if (sigaction(SIGUSR2, &sig, NULL) == -1)
-		return(write(2, "Error with SIGUSR2 handling.\n", 29), EXIT_FAILURE);
+		return (write(2, "Error with SIGUSR2 handling.\n", 29), EXIT_FAILURE);
 	while (1)
 		pause();
 	return (EXIT_SUCCESS);

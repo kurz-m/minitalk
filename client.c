@@ -6,7 +6,7 @@
 /*   By: makurz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 08:45:31 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/22 23:35:27 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/23 00:54:38 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,22 @@ void	send_package(char *str, pid_t pid)
 
 	while (*str)
 	{
-		bit = -1;
+		bit = 8;
 		package = *str++;
-		while (++bit < 8)
+		while (bit--)
 		{
-			////if (package >> bit & 1)
-			if (package & (1 << bit))
+			if (package >> bit & 1)
 				kill(pid, SIGUSR2);
 			else
 				kill(pid, SIGUSR1);
 			usleep(AWAIT);
 		}
 	}
+	bit = 8;
 	while (bit--)
 	{
 		kill(pid, SIGUSR1);
-		usleep(100);
+		usleep(42);
 	}
 }
 
@@ -62,7 +62,7 @@ int	main(int argc, char *argv[])
 		return (EXIT_FAILURE);
 	}
 	message = argv[2];
-	write(1, "Chars acknowledged: ", 20);
+	write(1, "Packages acknowledged: ", 23);
 	signal(SIGUSR1, acknowledge_signal);
 	signal(SIGUSR2, acknowledge_signal);
 	send_package(message, ft_atoi(argv[1]));

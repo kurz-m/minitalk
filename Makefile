@@ -6,7 +6,7 @@
 #    By: makurz <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/21 08:46:25 by makurz            #+#    #+#              #
-#    Updated: 2023/04/23 00:29:31 by makurz           ###   ########.fr        #
+#    Updated: 2023/04/23 00:56:35 by makurz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,16 +51,6 @@ SERVEROBJ := $(SERVER:%.c=%.o)
 CLIENTOBJ := $(CLIENT:%.c=%.o)
 
 all: $(NAME)
-	@printf "\n"
-	@echo $(G)"             **          **   **              ** **    "
-	@echo $(G)"            //          //   /**             /**/**    "
-	@echo $(G)" **********  ** *******  ** ******  ******   /**/**  **"
-	@echo $(G)"//**//**//**/**//**///**/**///**/  //////**  /**/** ** "
-	@echo $(G)" /** /** /**/** /**  /**/**  /**    *******  /**/****  "
-	@echo $(G)" /** /** /**/** /**  /**/**  /**   **////**  /**/**/** "
-	@echo $(G)" *** /** /**/** ***  /**/**  //** //******** ***/**//**"
-	@echo $(G)"///  //  // // ///   // //    //   //////// /// //  // "$(X)
-	@printf "\n"
 
 $(NAME): $(SERVERNAME) $(CLIENTNAME)
 
@@ -76,13 +66,17 @@ $(CLIENTNAME):
 
 clean:
 	@if [ -f ${CLIENTNAME} ] && [ -f ${SERVERNAME} ]; then \
-		echo $(R)Cleaning"  "minitalk...$(X); \
+		echo $(R)Cleaning" "minitalk...$(X); \
 		$(RM) ${CLIENTNAME} ${SERVERNAME}; \
 		echo $(G)Cleaned!$(X); \
 	fi
 
 fclean: clean
-	@$(RM) $(NAME)
+	@if [ -f ${NAME} ]; then \
+		echo $(R)Cleaning" "minitalk...$(X); \
+		$(RM) ${NAME}; \
+		echo $(G)Cleaned!$(X); \
+	fi
 
 re: fclean all
 
