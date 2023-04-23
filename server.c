@@ -6,7 +6,7 @@
 /*   By: makurz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 08:45:43 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/23 00:49:34 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/23 11:49:45 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,19 @@
 static void	listen_for_client(int sig, siginfo_t *info, void *old)
 {
 	static t_package	pack;
-	static pid_t		client_pid = 0;
 
 	(void)old;
-	if (!client_pid)
-		client_pid = info->si_pid;
+	(void)info;
 	pack.byte |= (sig == SIGUSR2);
 	if (++pack.index == 8)
 	{
 		pack.index = 0;
 		if (!pack.byte)
 		{
-			kill(client_pid, SIGUSR2);
-			client_pid = 0;
 			return ;
 		}
 		write(1, &pack.byte, 1);
 		pack.byte = 0;
-		kill(client_pid, SIGUSR1);
 	}
 	else
 		pack.byte <<= 1;
