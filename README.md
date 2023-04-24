@@ -52,19 +52,6 @@ make
 ```bash
 ./server
 ```
-
-```bash
-cd minitalk
-```
-
-```bash
-make
-```
-
-```bash
-./server
-```
-
 ```bash
 ./client <PID> "message"
 ```
