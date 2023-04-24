@@ -34,35 +34,20 @@
 > The task of the minitalk project is to code 2 C programs that communicate which each other via Signals (SIGUSR1 & SIGUSR2).
 
 ## Usage
-The _get_next_function_ is not a stand-alone function. It has to be 
-included in another project/main function to test and run it.
+Minitalk has 2 programs that communicate each other. The _server_ has to be started first in a separate terminal using `./server`
+and then the _client_ can be used to send a message to the server. This can be done using the syntax: `./client PID "message"`
+where PID is the process number that the server printed out on startup. After sending the message from the client, 
+the server sends back an acknowledgment signal and the client prints out the acknowledged bytes.
 
-```c
-#include <stdio.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include "get_next_line.h"
+```bash
+git clone https://github.com/kurz-m/minitalk.git
 
-int main(int argc, char **argc)
-{
-    int     fd;
-    char    *line;
+cd minitalk
 
-    (void) argc;
-    fd = open(argv[1], O_RDONLY);
-    line = "";
-    while (line != NULL)
-    {
-        line = get_next_line(fd);
-        printf("%s", line);
-    }
-    fd = close(fd);
-    return (0);
-}
-```
+make
 
-## Compilation
-```c
-gcc main.c get_next_line.c get_next_line_utils.c
+./server
+
+./client <PID> "message"
 ```
 
