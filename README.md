@@ -41,6 +41,7 @@ the server sends back an acknowledgment signal and the client prints out the ack
 
 ```bash
 git clone https://github.com/kurz-m/minitalk.git
+<<<<<<< HEAD
 ```
 
 ```bash
@@ -53,6 +54,15 @@ make
 ./server
 ```
 ```bash
+=======
+
+cd minitalk
+
+make
+
+./server
+
+>>>>>>> 1d67855b08136f66c65c4dbd10de9553c835825b
 ./client <PID> "message"
 ```
 
