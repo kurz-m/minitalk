@@ -6,7 +6,7 @@
 /*   By: makurz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 08:45:43 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/23 00:49:34 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/24 06:40:46 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	listen_for_client(int sig, siginfo_t *info, void *old)
 		if (!pack.byte)
 		{
 			kill(client_pid, SIGUSR2);
+			write(1, "\n", 1);
 			client_pid = 0;
 			return ;
 		}
