@@ -6,14 +6,14 @@
 /*   By: makurz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:15:11 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/22 23:24:00 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/24 08:52:05 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
 // Outputs the char 'c' to the file descriptor 'fd'.
-void	ft_putchar_fd(char c, int fd)
+static void	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
 }

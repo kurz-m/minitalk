@@ -6,7 +6,7 @@
 /*   By: makurz <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:17:10 by makurz            #+#    #+#             */
-/*   Updated: 2023/04/23 01:20:09 by makurz           ###   ########.fr       */
+/*   Updated: 2023/04/24 08:51:58 by makurz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct s_package
 }	t_package;
 
 // functions to print out the numbers etc.
-void	ft_putchar_fd(char c, int fd);
 void	ft_putnbr_fd(int n, int fd);
 int		ft_atoi(const char *str);
 
