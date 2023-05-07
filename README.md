@@ -24,17 +24,17 @@
 </h3>
 
 <p align="center">
-    Finished: <br>
-    Grade: %
+    Finished: 14/05/2023<br>
+    Grade: 125%
 </p>
 
 ---
 
 ## 💾 About
-> The task of the minitalk project is to code 2 C programs that communicate which each other via Signals (SIGUSR1 & SIGUSR2).
+> The task of the minitalk project is to code 2 C programs that communicate with each other via only 2 Signals (SIGUSR1 & SIGUSR2).
 
 ## Usage
-Minitalk has 2 programs that communicate each other. The _server_ has to be started first in a separate terminal using `./server`
+Minitalk has 2 programs that communicate with each other. The _server_ has to be started first in a separate terminal using `./server`
 and then the _client_ can be used to send a message to the server. This can be done using the syntax: `./client PID "message"`
 where PID is the process number that the server printed out on startup. After sending the message from the client, 
 the server sends back an acknowledgment signal and the client prints out the acknowledged bytes.
