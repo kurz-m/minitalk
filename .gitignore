@@ -51,5 +51,7 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+# Individual .gitignore
+.ccls-cache
 server
 client
